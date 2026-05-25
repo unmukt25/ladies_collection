@@ -11,7 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -78,25 +78,25 @@
         <!-- Navigation -->
         <div class="sidebar-section" style="padding-top:22px;">
           <div class="sidebar-section-title">Navigate</div>
-          <a class="side-nav-link active" onclick="setCategory(this,'All')">
+          <a class="side-nav-link" href="<?=base_url("/dress/all-dresses")?>">
             <i class="fas fa-grip-vertical"></i><span class="link-text">All Dresses</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Casual')">
+          <a class="side-nav-link" href="<?=base_url("/dress/casual")?>">
             <i class="fas fa-leaf"></i><span class="link-text">Casual</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Evening')">
+          <a class="side-nav-link" href="<?=base_url("/dress/evening")?>">
             <i class="fas fa-star"></i><span class="link-text">Evening &amp; Gala</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Bridal')">
+          <a class="side-nav-link" href="<?=base_url("/dress/bridal")?>">
             <i class="fas fa-ring"></i><span class="link-text">Bridal</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Party')">
+          <a class="side-nav-link" href="<?=base_url("/dress/party")?>">
             <i class="fas fa-champagne-glasses"></i><span class="link-text">Party</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Office')">
+          <a class="side-nav-link" href="<?=base_url("/dress/office-wear")?>">
             <i class="fas fa-briefcase"></i><span class="link-text">Office Wear</span>
           </a>
-          <a class="side-nav-link" onclick="setCategory(this,'Sale')">
+          <a class="side-nav-link" href="<?=base_url("/dress/sale")?>">
             <i class="fas fa-tags"></i><span class="link-text">Sale</span>
           </a>
         </div>
@@ -238,6 +238,9 @@
 
   
   <script>
+
+
+
     /* ───────── DATA ───────── */
     // const DRESSES = [
     //   { id: 1, name: 'Aurora Floral Midi', cat: 'Casual', price: 2499, old: 3299, rating: 4.7, rev: 238, badge: 'New', colors: ['#e8c4b8', '#8ab89a', '#fff'], sizes: ['XS', 'S', 'M', 'L'], img: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=75' },
@@ -331,10 +334,10 @@
       grid.innerHTML = data.map((d, i) => `
     <div class="dress-card" style="animation-delay:${i * 0.05}s">
       <div class="card-img-wrap">
-        <img src="${d.img}" alt="${d.name}" loading="lazy"/>
+        <img src="${d.img}" alt="${d.product_name}" loading="lazy"/>
         <div class="card-overlay">
           <div class="overlay-btns">
-            <button class="overlay-btn ghost" onclick="event.stopPropagation();toast('Quick view: ${d.name}','fa-eye')">
+            <button class="overlay-btn ghost" onclick="event.stopPropagation();toast('Quick view: ${d.product_name}','fa-eye')">
               <i class="far fa-eye"></i> View
             </button>
             <button class="overlay-btn primary" onclick="event.stopPropagation();addCart(${d.id})">
@@ -349,7 +352,7 @@
       </div>
       <div class="card-body">
         <div class="card-category">${d.cat}</div>
-        <div class="card-name">${d.name}</div>
+        <div class="card-name">${d.product_name}</div>
         <div class="card-swatches">${d.colors.map(c => `<div class="card-swatch" style="background:${c};"></div>`).join('')}</div>
         <div class="card-footer-row">
           <div class="price-wrap">

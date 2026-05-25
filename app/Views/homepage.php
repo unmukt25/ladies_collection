@@ -26,7 +26,7 @@
 </main>
 
 <script>
-    const DRESSES = [
+    let DRESSES = [
         {
             id: 1,
             name: "Aurora Floral Midi",
@@ -196,5 +196,90 @@
             img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=75",
         },
     ];
+
+    document.addEventListener("DOMContentLoaded", async function () {
+
+        document.getElementById('resultMeta').innerText = "Loading dresses...";
+
+        /***************code to highlight the current page left nav****************/
+        // get current page path
+        const currentPath = window.location.pathname;
+
+        // get all sidebar links
+        const navLinks = document.querySelectorAll('.side-nav-link');
+
+        navLinks.forEach(link => {
+
+            // remove old active class
+            link.classList.remove('active');
+
+            // get href path only
+            const linkPath = new URL(link.href).pathname;
+
+            // compare current url with link url
+            if (currentPath === linkPath) {
+
+                link.classList.add('active');
+
+            }
+
+        });
+        /*********************end logic to left nav********************/
+
+        try {
+
+            // get current url path
+            const path = window.location.pathname;
+
+            // split url into array
+            const segments = path.split('/');
+
+            // get last segment
+            const category = segments[segments.length - 1];
+
+            // dynamic fetch url
+            const response = await fetch(
+                `<?= base_url('/data/dress-category/') ?>${category}`
+            );
+
+            const data = await response.json();
+
+            // check http status
+            if (!response.ok) {
+
+                DRESSES = [];
+                render();
+                throw new Error(
+                    `HTTP error! Status: ${response.status}`
+                );
+
+            }
+
+            // check empty array
+            if (!data || data.length === 0) {
+
+                DRESSES = [];
+
+                render();
+
+                return;
+
+            }
+
+            DRESSES = data;
+
+            render();
+
+        } catch (error) {
+
+            console.error(error);
+            document.getElementById('resultMeta').innerText =
+                "Failed to load dresses";
+        }
+
+        //updating active class based on current page 
+
+    });
+
 </script>
 <?= $this->endSection() ?>
