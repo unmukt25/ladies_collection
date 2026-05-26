@@ -22,3 +22,9 @@ $routes->get('/data/dress-category/bridal','DressesController::bridal');
 $routes->get('/data/dress-category/party','DressesController::party');
 $routes->get('/data/dress-category/office-wear','DressesController::office_wear');
 $routes->get('/data/dress-category/sale','DressesController::sale');
+
+$routes->get('/admin/login','Admin::login');
+$routes->get('/admin/dashboard','Admin::index');
+$routes->get('/admin/','Admin::index');
+
+

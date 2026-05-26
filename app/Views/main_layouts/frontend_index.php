@@ -50,7 +50,7 @@
     </div>
 
     <div class="nav-icons">
-      <button class="nav-icon-btn" title="Account" onclick="toast('Account coming soon','fa-user')">
+      <button class="nav-icon-btn" title="Account" onclick="window.location.href='<?= base_url('/admin/login') ?>'">
         <i class="far fa-user"></i>
       </button>
       <button class="nav-icon-btn" title="Wishlist"
