@@ -23,8 +23,11 @@ $routes->get('/data/dress-category/party','DressesController::party');
 $routes->get('/data/dress-category/office-wear','DressesController::office_wear');
 $routes->get('/data/dress-category/sale','DressesController::sale');
 
-$routes->get('/admin/login','Admin::login');
-$routes->get('/admin/dashboard','Admin::index');
-$routes->get('/admin/','Admin::index');
+$routes->get('/admin/login','Admin\Admin_Pages::login'); //view page
+$routes->get('/admin/dashboard','Admin\Admin_Pages::index'); //view for admin dashboard
+$routes->get('/admin/','Admin\Admin_Pages::index'); //view for admin dashboard
+
+$routes->post('/admin/auth/login','Admin\Auth::login'); //controller to check valid login
+$routes->get('/admin/auth/logout','Admin\Auth::logout'); //controller to check valid login
 
 

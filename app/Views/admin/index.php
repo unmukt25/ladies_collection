@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,7 +80,8 @@
       </nav>
 
       <div class="sidebar-user">
-        <img class="avatar-img avatar-md sidebar-user-avatar" src="../assets/images/avatar/avatar.jpg" alt="Admin Hasan">
+        <img class="avatar-img avatar-md sidebar-user-avatar" src="../assets/images/avatar/avatar.jpg"
+          alt="Admin Hasan">
         <strong>Admin Hasan</strong>
         <small>Active Workspace</small>
       </div>
@@ -92,22 +95,26 @@
     <div class="admin-main">
       <nav class="navbar admin-navbar navbar-expand bg-white">
         <div class="container-fluid px-3 px-lg-4">
-          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar" aria-expanded="true" aria-label="Toggle sidebar">
+          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar"
+            aria-expanded="true" aria-label="Toggle sidebar">
             <span></span>
             <span></span>
             <span></span>
           </button>
 
           <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Search users, orders, reports" aria-label="Search">
+            <input class="form-control search-input" type="search" placeholder="Search users, orders, reports"
+              aria-label="Search">
           </form>
 
           <div class="navbar-actions ms-auto">
-            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
+            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme"
+              title="Switch color theme">
               <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
             </button>
             <div class="dropdown">
-              <button class="icon-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+              <button class="icon-button" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                aria-label="Notifications">
                 <span class="notification-dot"></span>
                 <i class="bi bi-bell" aria-hidden="true"></i>
               </button>
@@ -129,15 +136,18 @@
             </div>
 
             <div class="dropdown">
-              <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <img class="avatar-img avatar-sm" src="../assets/images/avatar/avatar.jpg" alt="Admin Hasan">
                 <span class="profile-name d-none d-sm-inline">Admin Hasan</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                 <li><a class="dropdown-item" href="settings.html">Account settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="login.html">Sign out</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/admin/auth/logout">Sign out</a></li>
               </ul>
             </div>
           </div>
@@ -155,7 +165,9 @@
                 <p class="text-muted mb-0">Monitor performance, sales, users, and support from one clean workspace.</p>
               </div>
             </div>
-            <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm" type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
+            <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i
+                  class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm"
+                type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
           </div>
 
           <section class="row g-3 mt-1" aria-label="Dashboard metrics">
@@ -221,7 +233,8 @@
               <div class="panel">
                 <div class="panel-header">
                   <div>
-                    <h2 class="h5 mb-1 section-title"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Sales Performance</span></h2>
+                    <h2 class="h5 mb-1 section-title"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Sales
+                        Performance</span></h2>
                     <p class="text-muted mb-0">Monthly revenue compared with operational targets.</p>
                   </div>
                   <a class="btn btn-light btn-sm" href="charts.html">View Details</a>
@@ -242,15 +255,31 @@
               <div class="panel h-100">
                 <div class="panel-header">
                   <div>
-                    <h2 class="h5 mb-1 section-title"><i class="bi bi-activity" aria-hidden="true"></i><span>Team Activity</span></h2>
+                    <h2 class="h5 mb-1 section-title"><i class="bi bi-activity" aria-hidden="true"></i><span>Team
+                        Activity</span></h2>
                     <p class="text-muted mb-0">Recent operational updates.</p>
                   </div>
                 </div>
 
                 <div class="activity-list">
-                  <div class="activity-item"><span class="activity-dot bg-primary"></span><div><p class="mb-1 fw-semibold">New campaign launched</p><p class="text-muted small mb-0">Marketing team published the May offer.</p></div></div>
-                  <div class="activity-item"><span class="activity-dot bg-success"></span><div><p class="mb-1 fw-semibold">Payment batch cleared</p><p class="text-muted small mb-0">246 invoices were processed successfully.</p></div></div>
-                  <div class="activity-item"><span class="activity-dot bg-warning"></span><div><p class="mb-1 fw-semibold">Support queue rising</p><p class="text-muted small mb-0">Average first response time is 18 minutes.</p></div></div>
+                  <div class="activity-item"><span class="activity-dot bg-primary"></span>
+                    <div>
+                      <p class="mb-1 fw-semibold">New campaign launched</p>
+                      <p class="text-muted small mb-0">Marketing team published the May offer.</p>
+                    </div>
+                  </div>
+                  <div class="activity-item"><span class="activity-dot bg-success"></span>
+                    <div>
+                      <p class="mb-1 fw-semibold">Payment batch cleared</p>
+                      <p class="text-muted small mb-0">246 invoices were processed successfully.</p>
+                    </div>
+                  </div>
+                  <div class="activity-item"><span class="activity-dot bg-warning"></span>
+                    <div>
+                      <p class="mb-1 fw-semibold">Support queue rising</p>
+                      <p class="text-muted small mb-0">Average first response time is 18 minutes.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,14 +288,24 @@
           <section class="panel mt-3">
             <div class="panel-header">
               <div>
-                <h2 class="h5 mb-1 section-title"><i class="bi bi-people" aria-hidden="true"></i><span>Recent Users</span></h2>
+                <h2 class="h5 mb-1 section-title"><i class="bi bi-people" aria-hidden="true"></i><span>Recent
+                    Users</span></h2>
                 <p class="text-muted mb-0">Latest account activity across the workspace.</p>
               </div>
               <a class="btn btn-outline-secondary btn-sm" href="users.html">Manage Users</a>
             </div>
             <div class="table-responsive">
               <table class="table align-middle mb-0">
-                <thead><tr><th scope="col">User</th><th scope="col">Role</th><th scope="col">Team</th><th scope="col">Status</th><th scope="col">Joined</th><th scope="col" class="text-end">Action</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Joined</th>
+                    <th scope="col" class="text-end">Action</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
                     <td>
@@ -357,7 +396,9 @@
 
       <footer class="admin-footer">
         <div class="container-fluid px-3 px-lg-4">
-          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success" href="https://github.com/HasanMahmudDev">Md. Hasan Mahmud</a> • Distributed by <a target="_blank" class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
+          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success"
+              href="https://github.com/HasanMahmudDev">Md. Hasan Mahmud</a> • Distributed by <a target="_blank"
+              class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
           <span>Professional dashboard template.</span>
         </div>
       </footer>
@@ -367,4 +408,5 @@
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
+
 </html>
