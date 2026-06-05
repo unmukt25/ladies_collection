@@ -26,6 +26,12 @@ $routes->get('/data/dress-category/sale','DressesController::sale');
 $routes->get('/admin/login','Admin\Admin_Pages::login'); //view page
 $routes->get('/admin/dashboard','Admin\Admin_Pages::index'); //view for admin dashboard
 $routes->get('/admin/','Admin\Admin_Pages::index'); //view for admin dashboard
+$routes->get('/admin/default','Admin\Admin_Pages::default'); //view for admin dashboard
+
+$routes->get('/admin/dresses','Admin\Admin_Pages::dresses'); 
+$routes->get('admin/dresses/add', 'Admin\Admin_Pages::addDress');
+$routes->get('admin/dresses/edit/(:num)', 'Admin\Dresses::edit/$1');
+$routes->post('admin/dresses/delete/(:num)', 'Admin\Dresses::delete/$1');
 
 $routes->post('/admin/auth/login','Admin\Auth::login'); //controller to check valid login
 $routes->get('/admin/auth/logout','Admin\Auth::logout'); //controller to check valid login
