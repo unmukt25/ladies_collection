@@ -3,19 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2026 at 08:51 PM
+-- Generation Time: Jun 05, 2026 at 02:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ladies_collection`
@@ -62,6 +56,43 @@ INSERT INTO `dresses` (`id`, `product_name`, `cat`, `price`, `old_price`, `ratin
 (11, 'Midnight Halter Gown', 'Evening', 11200.00, 13500.00, 4.9, 58, '', '[\"Solid\"]', '[\"#2e2622\"]', '[\"S\",\"M\",\"L\"]', 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=75', '2026-05-23 14:37:28', '2026-05-23 14:37:28'),
 (12, 'Blush Satin A-Line', 'Bridal', 12800.00, NULL, 4.8, 34, 'New', '[\"Solid\"]', '[\"#e8c4b8\",\"#fff\"]', '[\"XS\",\"S\",\"M\",\"L\"]', 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=75', '2026-05-23 14:37:28', '2026-05-23 14:37:28');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_name`, `email`, `password`, `created_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', '$2y$10$sfMB7wTLzmeJ1JEvX6tYROUkcGaXmEWgvC7Npoz2JU8G7b96wo8Qe', '2026-05-29 06:26:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitor_logs`
+--
+
+CREATE TABLE `visitor_logs` (
+  `id` int(11) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `page_url` varchar(255) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `visited_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -73,6 +104,19 @@ ALTER TABLE `dresses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `visitor_logs`
+--
+ALTER TABLE `visitor_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -81,8 +125,16 @@ ALTER TABLE `dresses`
 --
 ALTER TABLE `dresses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `visitor_logs`
+--
+ALTER TABLE `visitor_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
