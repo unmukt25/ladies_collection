@@ -122,12 +122,16 @@
           <div class="filter-section">
             <div class="filter-label">Color</div>
             <div class="color-dot-wrap">
-              <div class="color-dot" style="background:#e8c4b8;" title="Blush" onclick="toggleColor(this,'Blush')">
-              </div>
+              
               <div class="color-dot" style="background:#1a1a1a;" title="Black" onclick="toggleColor(this,'Black')">
               </div>
+
               <div class="color-dot" style="background:#f9f9f9;border:1.5px solid #ccc;" title="White"
                 onclick="toggleColor(this,'White')"></div>
+
+              <div class="color-dot" style="background:#e8c4b8;" title="Blush" onclick="toggleColor(this,'Blush')">
+              </div>
+              
               <div class="color-dot" style="background:#6a8caf;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
               <div class="color-dot" style="background:#8ab89a;" title="Sage" onclick="toggleColor(this,'Sage')"></div>
               <div class="color-dot" style="background:#c9716a;" title="Rose" onclick="toggleColor(this,'Rose')"></div>
@@ -273,14 +277,14 @@
     let collapsed = false;
 
     const COLOR_MAP = {
-      Blush: '#e8c4b8',
-      Black: '#1a1a1a',
-      White: '#ffffff',
-      Blue: '#6a8caf',
-      Sage: '#8ab89a',
-      Rose: '#c9716a',
-      Gold: '#c8a96e',
-      Mocha: '#7a5c52'
+      Black: '#000000',
+      White: '#FFFFFF',
+      Red:   '#FF0000',
+      Blue:   '#0000FF',
+      Green:  '#008000',
+      Yellow: '#FFFF00',
+      Orange: '#FFA500',
+      Purple: '#800080'
     };
 
     /* ───────── FILTER ───────── */

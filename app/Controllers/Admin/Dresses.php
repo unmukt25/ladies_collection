@@ -88,7 +88,7 @@ class Dresses extends BaseController
             'price' => $this->request->getPost('price'),
             'old_price' => $this->request->getPost('old_price'),
             'badge' => $this->request->getPost('badge'),
-            'reviews' => $this->request->getPost('reviews') ?? 0,
+            // 'reviews' => $this->request->getPost('reviews') ?? 0,
         ];
 
         // -------------------------
@@ -137,7 +137,7 @@ class Dresses extends BaseController
         // -------------------------
         $model->update($id, $data);
 
-        return redirect()->to('/admin/dresses')
+        return redirect()->to(base_url('/admin/dresses'))
             ->with('success', 'Dress updated successfully');
     }
 

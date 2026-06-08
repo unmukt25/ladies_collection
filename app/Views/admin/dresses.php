@@ -3,120 +3,111 @@
 <?= $this->section('content') ?>
 
 <main class="dashboard-content">
-<div class="container-fluid px-3 px-lg-4 py-4">
+    <div class="container-fluid px-3 px-lg-4 py-4">
 
-    <div class="panel">
+        <div class="panel">
 
-        <div class="panel-header">
+            <div class="panel-header">
 
-            <div>
-                <h2 class="h4 mb-1">Dresses</h2>
-                <p class="text-muted mb-0">
-                    Manage all dresses
-                </p>
+                <div>
+                    <h2 class="h4 mb-1">Dresses</h2>
+                    <p class="text-muted mb-0">
+                        Manage all dresses
+                    </p>
+                </div>
+
+                <a href="<?= base_url('admin/dresses/add') ?>" class="btn btn-primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Add Dress
+                </a>
+
             </div>
 
-            <a href="<?= base_url('admin/dresses/add') ?>"
-               class="btn btn-primary">
-                <i class="bi bi-plus-lg"></i>
-                Add Dress
-            </a>
+            <div class="table-responsive">
 
-        </div>
+                <table class="table align-middle">
 
-        <div class="table-responsive">
+                    <thead>
 
-            <table class="table align-middle">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                            <th>Reviews</th>
+                            <th>Badge</th>
+                            <th>Added</th>
+                            <th width="140">Action</th>
+                        </tr>
 
-                <thead>
+                    </thead>
 
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Rating</th>
-                        <th>Reviews</th>
-                        <th>Badge</th>
-                        <th>Added</th>
-                        <th width="140">Action</th>
-                    </tr>
+                    <tbody>
 
-                </thead>
+                        <?php foreach ($dresses as $dress): ?>
 
-                <tbody>
+                            <tr>
 
-                <?php foreach($dresses as $dress): ?>
+                                <td>
 
-                    <tr>
+                                    <img src="<?= base_url('uploads/dresses/' . $dress['img']) ?>" width="50" height="50"
+                                        class="rounded border dress-thumb" style="cursor:pointer;object-fit:cover;"
+                                        data-bs-toggle="modal" data-bs-target="#imageModal"
+                                        data-image="<?= base_url('uploads/dresses/' . $dress['img']) ?>">
 
-                        <td>
+                                </td>
 
-                            <img
-                                src="<?= base_url('uploads/dresses/'.$dress['img']) ?>"
-                                width="50"
-                                height="50"
-                                class="rounded border dress-thumb"
-                                style="cursor:pointer;object-fit:cover;"
-                                data-bs-toggle="modal"
-                                data-bs-target="#imageModal"
-                                data-image="<?= base_url('uploads/dresses/'.$dress['img']) ?>"
-                            >
+                                <td><?= esc($dress['product_name']) ?></td>
 
-                        </td>
+                                <td><?= esc($dress['cat']) ?></td>
 
-                        <td><?= esc($dress['product_name']) ?></td>
+                                <td>
+                                    ₹<?= number_format($dress['price']) ?>
+                                </td>
 
-                        <td><?= esc($dress['cat']) ?></td>
+                                <td><?= $dress['rating'] ?></td>
 
-                        <td>
-                            ₹<?= number_format($dress['price']) ?>
-                        </td>
+                                <td><?= $dress['reviews'] ?></td>
 
-                        <td><?= $dress['rating'] ?></td>
+                                <td><?= $dress['badge'] ?: '-' ?></td>
 
-                        <td><?= $dress['reviews'] ?></td>
+                                <td>
+                                    <?= date('d M Y', strtotime($dress['created_at'])) ?>
+                                </td>
 
-                        <td><?= $dress['badge'] ?: '-' ?></td>
+                                <td>
 
-                        <td>
-                            <?= date('d M Y', strtotime($dress['created_at'])) ?>
-                        </td>
+                                    <a href="<?= base_url('admin/dresses/edit/' . $dress['id']) ?>"
+                                        class="btn btn-sm btn-warning">
+                                        Edit
+                                    </a>
 
-                        <td>
+                                    <a href="<?= base_url('admin/dresses/delete/' . $dress['id']) ?>"
+                                        class="btn btn-sm btn-danger" onclick="return confirm('Delete this dress?')">
+                                        Delete
+                                    </a>
 
-                            <a href="<?= base_url('admin/dresses/edit/'.$dress['id']) ?>"
-                               class="btn btn-sm btn-warning">
-                                Edit
-                            </a>
+                                </td>
 
-                            <a href="<?= base_url('admin/dresses/delete/'.$dress['id']) ?>"
-                               class="btn btn-sm btn-danger"
-                               onclick="return confirm('Delete this dress?')">
-                                Delete
-                            </a>
+                            </tr>
 
-                        </td>
+                        <?php endforeach; ?>
 
-                    </tr>
+                    </tbody>
 
-                <?php endforeach; ?>
+                </table>
 
-                </tbody>
+            </div>
 
-            </table>
-
-        </div>
-
-        <div class="p-3">
-
-            <?= $pager->links() ?>
+            <div class="p-3">
+                
+                <?= $pager->links('default', 'bootstrap_full') ?>
+            </div>
 
         </div>
 
     </div>
-
-</div>
 </main>
 
 <!-- Image Modal -->
@@ -129,9 +120,7 @@
 
             <div class="modal-body text-center">
 
-                <img id="modalImage"
-                     src=""
-                     class="img-fluid rounded">
+                <img id="modalImage" src="" class="img-fluid rounded">
 
             </div>
 
@@ -143,18 +132,18 @@
 
 <script>
 
-document.querySelectorAll('.dress-thumb')
-.forEach(img => {
+    document.querySelectorAll('.dress-thumb')
+        .forEach(img => {
 
-    img.addEventListener('click', function(){
+            img.addEventListener('click', function () {
 
-        document
-        .getElementById('modalImage')
-        .src = this.dataset.image;
+                document
+                    .getElementById('modalImage')
+                    .src = this.dataset.image;
 
-    });
+            });
 
-});
+        });
 
 </script>
 
