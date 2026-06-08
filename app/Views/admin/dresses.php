@@ -53,14 +53,14 @@
                         <td>
 
                             <img
-                                src="<?= esc($dress['img']) ?>"
+                                src="<?= base_url('uploads/dresses/'.$dress['img']) ?>"
                                 width="50"
                                 height="50"
                                 class="rounded border dress-thumb"
                                 style="cursor:pointer;object-fit:cover;"
                                 data-bs-toggle="modal"
                                 data-bs-target="#imageModal"
-                                data-image="<?= esc($dress['img']) ?>"
+                                data-image="<?= base_url('uploads/dresses/'.$dress['img']) ?>"
                             >
 
                         </td>
