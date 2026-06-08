@@ -30,9 +30,12 @@ $routes->get('/admin/default','Admin\Admin_Pages::default'); //view for admin da
 
 $routes->get('/admin/dresses','Admin\Admin_Pages::dresses'); 
 $routes->get('admin/dresses/add', 'Admin\Admin_Pages::addDress');
-$routes->get('admin/dresses/edit/(:num)', 'Admin\Dresses::edit/$1');
-$routes->post('admin/dresses/delete/(:num)', 'Admin\Dresses::delete/$1');
 $routes->post('admin/dresses/store', 'Admin\Dresses::store');
+
+$routes->get('admin/dresses/edit/(:num)', 'Admin\Admin_Pages::editDress/$1');
+$routes->post('admin/dresses/update/(:num)', 'Admin\Dresses::update/$1');
+
+$routes->get('admin/dresses/delete/(:num)', 'Admin\Dresses::delete/$1');
 
 $routes->post('/admin/auth/login','Admin\Auth::login'); //controller to check valid login
 $routes->get('/admin/auth/logout','Admin\Auth::logout'); //controller to check valid login

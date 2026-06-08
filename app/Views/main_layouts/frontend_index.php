@@ -291,7 +291,7 @@
         if (d.price > maxPrice) return false;
         if (d.rating < minRating) return false;
         if (selSizes.size && !d.sizes.some(s => selSizes.has(s))) return false;
-        if (query && !d.name.toLowerCase().includes(query.toLowerCase())) return false;
+        if (query && !d.product_name.toLowerCase().includes(query.toLowerCase())) return false;
 
         if (selColors.size && !d.colors.some(c => {
           return Array.from(selColors).some(sel => COLOR_MAP[sel] === c);
@@ -334,7 +334,7 @@
       grid.innerHTML = data.map((d, i) => `
     <div class="dress-card" style="animation-delay:${i * 0.05}s">
       <div class="card-img-wrap">
-        <img src="${d.img}" alt="${d.product_name}" loading="lazy"/>
+        <img src="/uploads/dresses/${d.img}" alt="${d.product_name}" loading="lazy"/>
         <div class="card-overlay">
           <div class="overlay-btns">
             <button class="overlay-btn ghost" onclick="event.stopPropagation();toast('Quick view: ${d.product_name}','fa-eye')">

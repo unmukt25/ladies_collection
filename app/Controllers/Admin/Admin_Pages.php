@@ -48,6 +48,10 @@ class Admin_Pages extends BaseController
     public function dresses()
     {
 
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
         $model = new DressModel();
 
         $data['dresses'] = $model
@@ -56,12 +60,37 @@ class Admin_Pages extends BaseController
 
         $data['pager'] = $model->pager;
 
-        return view("admin/dresses",$data);
+        return view("admin/dresses", $data);
     }
 
-    public function addDress(){
+    public function addDress()
+    {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
 
-         return view('admin/add_dress');
+        return view('admin/add_dress');
     }
+
+    public function editDress($id)
+    {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        $dressModel = new DressModel();
+
+        $dress = $dressModel->find($id);
+
+        if (!$dress) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Dress not found");
+        }
+
+        return view('admin/edit_dress', [
+            'dress' => $dress
+        ]);
+    }
+
+
 
 }

@@ -151,14 +151,14 @@
 
                             <select multiple name="sizes[]" class="form-select">
 
-                                <option>XS (Extra Small)</option>
-                                <option>S (Small)</option>
-                                <option>M (Medium)</option>
-                                <option>L (Large)</option>
-                                <option>XL (Extra Large)</option>
-                                <option>XXL (2X Large)</option>
-                                <option>XXXL (3X Large)</option>
-                                <option>XXXXL (4X Large)</option>
+                                <option value="XS">XS (Extra Small)</option>
+                                <option value="S">S (Small)</option>
+                                <option value="M">M (Medium)</option>
+                                <option value="L">L (Large)</option>
+                                <option value="XL">XL (Extra Large)</option>
+                                <option value="XXL">XXL (2X Large)</option>
+                                <option value="XXXL">XXXL (3X Large)</option>
+                                <option value="XXXXL">XXXXL (4X Large)</option>
 
                             </select>
                         </div>
