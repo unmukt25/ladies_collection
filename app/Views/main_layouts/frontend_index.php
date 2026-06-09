@@ -129,15 +129,20 @@
               <div class="color-dot" style="background:#f9f9f9;border:1.5px solid #ccc;" title="White"
                 onclick="toggleColor(this,'White')"></div>
 
-              <div class="color-dot" style="background:#e8c4b8;" title="Blush" onclick="toggleColor(this,'Blush')">
+              <div class="color-dot" style="background:#ff3e2e;" title="Red" onclick="toggleColor(this,'Red')">
               </div>
               
-              <div class="color-dot" style="background:#6a8caf;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
-              <div class="color-dot" style="background:#8ab89a;" title="Sage" onclick="toggleColor(this,'Sage')"></div>
-              <div class="color-dot" style="background:#c9716a;" title="Rose" onclick="toggleColor(this,'Rose')"></div>
-              <div class="color-dot" style="background:#c8a96e;" title="Gold" onclick="toggleColor(this,'Gold')"></div>
-              <div class="color-dot" style="background:#7a5c52;" title="Mocha" onclick="toggleColor(this,'Mocha')">
+              <div class="color-dot" style="background:#1065bd;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
+
+              <div class="color-dot" style="background:#20984a;" title="Green" onclick="toggleColor(this,'Green')"></div>
+
+              <div class="color-dot" style="background:#f8ff35;" title="Yellow" onclick="toggleColor(this,'Yellow')"></div>
+
+              <div class="color-dot" style="background:#ff9835;" title="Orange" onclick="toggleColor(this,'Orange')"></div>
+
+              <div class="color-dot" style="background:#9d20e3;" title="Purple" onclick="toggleColor(this,'Purple')">
               </div>
+
             </div>
           </div>
 

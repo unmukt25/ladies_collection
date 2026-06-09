@@ -68,4 +68,58 @@ class Auth extends BaseController
         // Redirect to login page
         return redirect()->to(base_url('/admin/login'));
     }
+
+    public function updateProfile()
+    {
+        $userModel = new UserModel();
+
+        $userId = session()->get('admin_id');
+
+        $userModel->update($userId, [
+            'user_name' => $this->request->getPost('user_name')
+        ]);
+
+        session()->set('admin_name', $this->request->getPost('user_name'));
+
+        return redirect()->back()->with(
+            'success',
+            'Profile updated successfully.'
+        );
+    }
+
+    public function changePassword()
+    {
+        $userModel = new UserModel();
+
+        $userId = session()->get('admin_id');
+
+        $user = $userModel->find($userId);
+
+        $currentPassword = $this->request->getPost('current_password');
+        $newPassword = $this->request->getPost('new_password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+
+        if (!password_verify($currentPassword, $user['password'])) {
+            return redirect()->back()->with(
+                'error',
+                'Current password is incorrect.'
+            );
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            return redirect()->back()->with(
+                'error',
+                'Password confirmation does not match.'
+            );
+        }
+
+        $userModel->update($userId, [
+            'password' => password_hash($newPassword, PASSWORD_DEFAULT)
+        ]);
+
+        return redirect()->back()->with(
+            'success',
+            'Password changed successfully.'
+        );
+    }
 }

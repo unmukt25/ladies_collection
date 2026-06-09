@@ -178,7 +178,7 @@ a {
   white-space: nowrap;
 }
 
-.sidebar-user {
+.sidebar-user1 {
   margin: auto 1rem 1rem;
   padding: 0.85rem;
   display: grid;
@@ -194,13 +194,13 @@ a {
   border: 3px solid #53e9b9;
 }
 
-.sidebar-user strong {
+.sidebar-user1 strong {
   color: var(--admin-sidebar-text-strong);
   font-size: 1rem;
   line-height: 1.1;
 }
 
-.sidebar-user small {
+.sidebar-user1 small {
   color: var(--admin-sidebar-muted);
   font-size: 0.84rem;
 }

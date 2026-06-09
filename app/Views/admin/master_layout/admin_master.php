@@ -37,25 +37,25 @@
           <span class="nav-icon"><i class="bi bi-cart" aria-hidden="true"></i></span>
           <span class="nav-text">Dresses</span>
         </a>
-        <a class="nav-link" href="forms.html">
+        <a class="nav-link" href="<?=base_url("admin/category")?>">
           <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
           <span class="nav-text">Categories</span>
         </a>
-        <a class="nav-link" href="users.html">
+        <a class="nav-link" href="<?=base_url("admin/users")?>">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
-          <span class="nav-text">Users</span>
+          <span class="nav-text">User</span>
         </a>
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="<?=base_url("admin/profile")?>">
           <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
           <span class="nav-text">Profile</span>
         </a>
       </nav>
 
-      <div class="sidebar-user">
+      <div class="sidebar-user1">
         <img class="avatar-img avatar-md sidebar-user-avatar" src="../assets/images/avatar/avatar.jpg"
           alt="Admin Hasan">
-        <strong>Admin Hasan</strong>
-        <small>Active Workspace</small>
+        <strong><?= esc(session('admin_name')) ?></strong>
+        <small>Active User</small>
       </div>
 
       <div class="sidebar-footer">
@@ -111,7 +111,7 @@
               <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <img class="avatar-img avatar-sm" src="../assets/images/avatar/avatar.jpg" alt="Admin Hasan">
-                <span class="profile-name d-none d-sm-inline">Admin Hasan</span>
+                <span class="profile-name1 d-none d-sm-inline"><?= esc(session('admin_name')) ?></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
@@ -130,10 +130,9 @@
 
       <footer class="admin-footer">
         <div class="container-fluid px-3 px-lg-4">
-          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success"
-              href="https://github.com/HasanMahmudDev">Md. Hasan Mahmud</a> • Distributed by <a target="_blank"
-              class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
-          <span>Professional dashboard template.</span>
+          <span>Copyright 2026 Radix Softwares. <br> Developed by <a class="fw-bold text-success"
+              href="#">Unmukt</a> • Distributed by <a class="fw-bold text-success" href="#">Radix Softwares</a> </span>
+          <span>Professional dashboard </span>
         </div>
       </footer>
     </div>

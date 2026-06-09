@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Admin\DashboardModel;
 use App\Models\DressModel;
+use App\Models\UserModel;
 
 class Admin_Pages extends BaseController
 {
@@ -89,6 +90,27 @@ class Admin_Pages extends BaseController
         return view('admin/edit_dress', [
             'dress' => $dress
         ]);
+    }
+
+    public function category()
+    {
+        return view("admin/category");
+    }
+
+    public function users()
+    {
+        $userModel = new UserModel();
+
+        $user = $userModel->find(session()->get('admin_id'));
+        
+        return view('admin/users', [
+            'user' => $user
+        ]);
+    }
+
+    public function profile()
+    {
+        return view("admin/profile");
     }
 
 

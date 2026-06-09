@@ -28,6 +28,13 @@ $routes->get('/admin/dashboard','Admin\Admin_Pages::index'); //view for admin da
 $routes->get('/admin/','Admin\Admin_Pages::index'); //view for admin dashboard
 $routes->get('/admin/default','Admin\Admin_Pages::default'); //view for admin dashboard
 
+$routes->get('/admin/category','Admin\Admin_Pages::category'); 
+$routes->get('/admin/users','Admin\Admin_Pages::users'); 
+$routes->get('/admin/profile','Admin\Admin_Pages::profile'); 
+
+$routes->post('/admin/users/update-profile', 'Admin\Auth::updateProfile');
+$routes->post('/admin/users/change-password', 'Admin\Auth::changePassword');
+
 $routes->get('/admin/dresses','Admin\Admin_Pages::dresses'); 
 $routes->get('admin/dresses/add', 'Admin\Admin_Pages::addDress');
 $routes->post('admin/dresses/store', 'Admin\Dresses::store');
