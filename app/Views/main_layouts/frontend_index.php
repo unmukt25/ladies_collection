@@ -78,25 +78,25 @@
         <!-- Navigation -->
         <div class="sidebar-section" style="padding-top:22px;">
           <div class="sidebar-section-title">Navigate</div>
-          <a class="side-nav-link" href="<?=base_url("/dress/all-dresses")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/all-dresses") ?>">
             <i class="fas fa-grip-vertical"></i><span class="link-text">All Dresses</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/casual")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/casual") ?>">
             <i class="fas fa-leaf"></i><span class="link-text">Casual</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/evening")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/evening") ?>">
             <i class="fas fa-star"></i><span class="link-text">Evening &amp; Gala</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/bridal")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/bridal") ?>">
             <i class="fas fa-ring"></i><span class="link-text">Bridal</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/party")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/party") ?>">
             <i class="fas fa-champagne-glasses"></i><span class="link-text">Party</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/office-wear")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/office-wear") ?>">
             <i class="fas fa-briefcase"></i><span class="link-text">Office Wear</span>
           </a>
-          <a class="side-nav-link" href="<?=base_url("/dress/sale")?>">
+          <a class="side-nav-link" href="<?= base_url("/dress/sale") ?>">
             <i class="fas fa-tags"></i><span class="link-text">Sale</span>
           </a>
         </div>
@@ -122,7 +122,7 @@
           <div class="filter-section">
             <div class="filter-label">Color</div>
             <div class="color-dot-wrap">
-              
+
               <div class="color-dot" style="background:#1a1a1a;" title="Black" onclick="toggleColor(this,'Black')">
               </div>
 
@@ -131,14 +131,17 @@
 
               <div class="color-dot" style="background:#ff3e2e;" title="Red" onclick="toggleColor(this,'Red')">
               </div>
-              
+
               <div class="color-dot" style="background:#1065bd;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
 
-              <div class="color-dot" style="background:#20984a;" title="Green" onclick="toggleColor(this,'Green')"></div>
+              <div class="color-dot" style="background:#20984a;" title="Green" onclick="toggleColor(this,'Green')">
+              </div>
 
-              <div class="color-dot" style="background:#f8ff35;" title="Yellow" onclick="toggleColor(this,'Yellow')"></div>
+              <div class="color-dot" style="background:#f8ff35;" title="Yellow" onclick="toggleColor(this,'Yellow')">
+              </div>
 
-              <div class="color-dot" style="background:#ff9835;" title="Orange" onclick="toggleColor(this,'Orange')"></div>
+              <div class="color-dot" style="background:#ff9835;" title="Orange" onclick="toggleColor(this,'Orange')">
+              </div>
 
               <div class="color-dot" style="background:#9d20e3;" title="Purple" onclick="toggleColor(this,'Purple')">
               </div>
@@ -192,8 +195,8 @@
       </div><!-- /sidebar-inner -->
     </aside>
 
-<!-- MAIN CONTENT IS IN CONTENT SECTION OF HOMEPAGE.PHP -->
-   <?= $this->renderSection('content') ?>
+    <!-- MAIN CONTENT IS IN CONTENT SECTION OF HOMEPAGE.PHP -->
+    <?= $this->renderSection('content') ?>
 
   </div><!-- /shell -->
 
@@ -245,7 +248,7 @@
 
   <div class="toast-container" id="toastWrap"></div>
 
-  
+
   <script>
 
 
@@ -266,7 +269,7 @@
     //   { id: 12, name: 'Blush Satin A-Line', cat: 'Bridal', price: 12800, old: null, rating: 4.8, rev: 34, badge: 'New', colors: ['#e8c4b8', '#fff'], sizes: ['XS', 'S', 'M', 'L'], img: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=75' },
     // ];
 
-    
+
 
     /* ───────── STATE ───────── */
     let category = 'All';
@@ -284,9 +287,9 @@
     const COLOR_MAP = {
       Black: '#000000',
       White: '#FFFFFF',
-      Red:   '#FF0000',
-      Blue:   '#0000FF',
-      Green:  '#008000',
+      Red: '#FF0000',
+      Blue: '#0000FF',
+      Green: '#008000',
       Yellow: '#FFFF00',
       Orange: '#FFA500',
       Purple: '#800080'
@@ -338,7 +341,7 @@
     </div>`;
         renderChips();
         return;
-      }
+      }     
 
       grid.innerHTML = data.map((d, i) => `
     <div class="dress-card" style="animation-delay:${i * 0.05}s">
@@ -355,8 +358,8 @@
           </div>
         </div>
         ${d.badge ? `<div class="card-badge ${d.badge.toLowerCase()}">${d.badge}</div>` : ''}
-        <button class="wishlist-btn ${wishlist.has(d.id) ? 'liked' : ''}" id="wl${d.id}" onclick="event.stopPropagation();toggleWish(${d.id})">
-          <i class="${wishlist.has(d.id) ? 'fas' : 'far'} fa-heart"></i>
+        <button class="wishlist-btn ${wishlist.has(Number(d.id)) ? 'liked' : ''}" id="wl${d.id}" onclick="event.stopPropagation();toggleWish(${d.id})">
+          <i class="${wishlist.has(Number(d.id)) ? 'fas' : 'far'} fa-heart"></i>
         </button>
       </div>
       <div class="card-body">
@@ -470,6 +473,10 @@
 
     function toggleWish(id) {
       wishlist.has(id) ? wishlist.delete(id) : wishlist.add(id);
+
+      // 2. Save updated list into browser cookie (valid for 30 days)
+      setWishlistCookie('user_wishlist', wishlist, 30);
+
       const btn = document.getElementById(`wl${id}`);
       if (btn) {
         btn.classList.toggle('liked', wishlist.has(id));
@@ -515,6 +522,32 @@
         el.style.animation = 'toastOut .3s ease forwards';
         setTimeout(() => el.remove(), 320);
       }, 2800);
+    }
+
+    // Helper to set a cookie stringified as JSON
+    function setWishlistCookie(name, setInstance, days) {
+      const arr = Array.from(setInstance); // Convert Set to Array
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + JSON.stringify(arr) + ";" + expires + ";path=/";
+    }
+
+    // Helper to get array data from a cookie
+    function getWishlistCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(nameEQ) === 0) {
+          try {
+            return JSON.parse(c.substring(nameEQ.length, c.length));
+          } catch (e) {
+            return [];
+          }
+        }
+      }
+      return [];
     }
 
     /* ───────── INIT ───────── */
