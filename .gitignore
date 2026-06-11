@@ -79,7 +79,8 @@ php_errors.log
 /tests/coverage*
 
 #Public Uploads
-/public/uploads*
+/public/uploads/*.jpg
+/public/uploads/*.jpeg
 
 # Don't save phpunit under version control.
 /phpunit
