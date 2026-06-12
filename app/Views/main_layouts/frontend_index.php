@@ -54,7 +54,7 @@
         <i class="far fa-user"></i>
       </button>
       <button class="nav-icon-btn" title="Wishlist"
-        onclick="toast('Wishlist: ' + wishlist.size + ' saved items','fa-heart')">
+        onclick="toggleWishlistFilter()">
         <i class="far fa-heart"></i>
         <div class="badge-dot" id="wishDot" style="display:none;"></div>
       </button>
@@ -284,6 +284,9 @@
     let wishlist = new Set();
     let collapsed = false;
 
+    // ─── ADD THIS LINE ───
+    let showWishlistOnly = false;
+
     const COLOR_MAP = {
       Black: '#000000',
       White: '#FFFFFF',
@@ -298,6 +301,11 @@
     /* ───────── FILTER ───────── */
     function filtered() {
       return DRESSES.filter(d => {
+
+        // ─── ADD THIS CONDITION AT THE TOP ───
+        if (showWishlistOnly && !wishlist.has(Number(d.id))) return false;
+        // ─────────────────────────────────────
+
         if (category === 'Sale' && !d.old) return false;
         if (category !== 'All' && category !== 'Sale' && d.cat !== category) return false;
         if (d.price > maxPrice) return false;
@@ -341,7 +349,7 @@
     </div>`;
         renderChips();
         return;
-      }     
+      }
 
       grid.innerHTML = data.map((d, i) => `
     <div class="dress-card" style="animation-delay:${i * 0.05}s">
@@ -548,6 +556,27 @@
         }
       }
       return [];
+    }
+
+    function toggleWishlistFilter() {
+      // Toggle the boolean state
+      showWishlistOnly = !showWishlistOnly;
+
+      // Grab the navbar wishlist button icon container to provide visual feedback
+      const wishBtnIcon = document.querySelector('.nav-icons button[title="Wishlist"] i');
+
+      if (showWishlistOnly) {
+        // Make the navbar heart solid and distinct when active
+        wishBtnIcon.className = "fas fa-heart text-danger";
+        toast('Showing wishlist items only', 'fa-heart');
+      } else {
+        // Revert back to original regular outline style when showing everything
+        wishBtnIcon.className = "far fa-heart";
+        toast('Showing all items', 'fa-grip-vertical');
+      }
+
+      // Rerender the grid with the applied filter modification
+      render();
     }
 
     /* ───────── INIT ───────── */
