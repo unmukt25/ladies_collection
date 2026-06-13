@@ -53,12 +53,11 @@
       <button class="nav-icon-btn" title="Account" onclick="window.location.href='<?= base_url('/admin/login') ?>'">
         <i class="far fa-user"></i>
       </button>
-      <button class="nav-icon-btn" title="Wishlist"
-        onclick="toggleWishlistFilter()">
+      <button class="nav-icon-btn" title="Wishlist" onclick="toggleWishlistFilter()">
         <i class="far fa-heart"></i>
         <div class="badge-dot" id="wishDot" style="display:none;"></div>
       </button>
-      <button class="nav-icon-btn" title="Bag" onclick="toast('Bag: ' + cartCount + ' item(s)','fa-bag-shopping')">
+      <button class="nav-icon-btn" title="Bag" onclick="toast('Bag: 0 item(s)','fa-bag-shopping')">
         <i class="fas fa-bag-shopping"></i>
         <div class="cart-count" id="cartBadge" style="display:none;">0</div>
       </button>
@@ -146,6 +145,10 @@
               <div class="color-dot" style="background:#9d20e3;" title="Purple" onclick="toggleColor(this,'Purple')">
               </div>
 
+              <div class="color-dot" style="background:#c32388;" title="Pink" onclick="toggleColor(this,'Pink')">
+              </div>
+
+
             </div>
           </div>
 
@@ -153,10 +156,10 @@
           <div class="filter-section">
             <div class="filter-label">Price Range</div>
             <div class="price-range">
-              <input type="range" class="range-slider" id="priceSlider" min="500" max="15000" value="15000" step="500"
+              <input type="range" class="range-slider" id="priceSlider" min="200" max="8000" value="8000" step="100"
                 oninput="handlePrice(this.value)" />
               <div class="price-labels">
-                <span>₹500</span><span id="priceLabel">Up to ₹15,000</span>
+                <span>₹200</span><span id="priceLabel">Up to ₹8,000</span>
               </div>
             </div>
           </div>
@@ -200,8 +203,111 @@
 
   </div><!-- /shell -->
 
+
+  <footer class="site-footer bg-dark text-light pt-5 pb-3">
+    <div class="container">
+
+      <!-- ── TRUST PILLARS ROW ───────────────────────────────────── -->
+      <div class="row text-center border-bottom border-secondary pb-4 mb-4 g-3">
+        <div class="col-6 col-md-3">
+          <div class="trust-pillar"><i class="fas fa-truck me-2"></i>Easy acces to the shop</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="trust-pillar"><i class="fas fa-rotate me-2"></i>Easy replacement</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="trust-pillar"><i class="fas fa-shield-halved me-2"></i>Online / Cash payment available</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="trust-pillar"><i class="fas fa-certificate me-2"></i>Premium Craftsmanship</div>
+        </div>
+      </div>
+
+      <!-- ── MAIN FOOTER CONTENT GRID ────────────────────────────── -->
+      <div class="row g-4">
+
+        <!-- Col 1: Brand & Socials -->
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-brand mb-3">Ladies <span class="text-rose">Collection</span></div>
+          <p class="footer-desc small">Curated fashion for the modern woman. From everyday elegance to gala evenings —
+            each piece is crafted with love and intention.</p>
+          <div class="footer-socials d-flex gap-2 mt-3">
+            <a href="https://instagram.com/yourhandle" target="_blank" class="social-btn" title="Instagram"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" title="WhatsApp Business"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-md-2 col-sm-6 ps-md-4">
+          <div class="footer-col-title mb-3 text-uppercase font-monospace tracking-wide text-white">Shop & Help</div>
+          <ul class="list-unstyled footer-links-list">
+            <li><a class="footer-link d-block py-1 small text-decoration-none" href="#">New Arrivals</a></li>
+            <li><a class="footer-link d-block py-1 small text-decoration-none" href="#">Best Sellers</a></li>
+            <li><a class="footer-link d-block py-1 small text-decoration-none" href="#">Shipping & Returns</a></li>
+            <li><a class="footer-link d-block py-1 small text-decoration-none" href="#">Size Guide</a></li>
+            <li><a class="footer-link d-block py-1 small text-decoration-none" href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact Details -->
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-col-title mb-3 text-uppercase font-monospace tracking-wide text-white">Contact Us</div>
+          <div class="contact-details small">
+            <p class="mb-2 d-flex align-items-start">
+              <i class="fas fa-location-dot mt-1 me-2 text-rose"></i>
+              <span>64/1, Main Market, Pratap Nagar, Jahangirabad, Bhopal,<br> Madhya Pradesh 462008</span>
+            </p>
+            <p class="mb-2">
+              <i class="fas fa-phone me-2 text-rose"></i>
+              <a href="tel:+911234512345" class="text-decoration-none hover-light">+91 12345-12345</a>
+            </p>
+            <p class="mb-0">
+              <i class="fas fa-clock me-2 text-rose"></i>
+              <span>Mon - Sat: 10:00 AM - 10:00 PM</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Col 4: Small Google Map Embed -->
+        <div class="col-md-4 col-sm-6">
+          <div class="footer-col-title mb-3 text-uppercase font-monospace tracking-wide text-white">Our Shop Location
+          </div>
+          <div class="map-container overflow-hidden rounded shadow-sm position-relative"
+            style="height: 150px; background: #2b2b2b;">
+            <!-- Replace URL inside src with your specific shared Google Maps embed URL string -->
+            <iframe src="https://www.google.com/maps?q=23.24912063220333, 77.41558551885451&output=embed" width="100%"
+              height="100%" style="border:0; " allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── FOOTER LOWER METADATA ROW ────────────────────────── -->
+      <div class="row pt-4 mt-4 border-top border-secondary align-items-center small g-3">
+        <div class="col-md-6 text-center text-md-start">
+          <span>© 2026 Ladies Collection. All rights reserved.</span>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <!-- Secure payment method vectors representation -->
+          <div class="payment-gateways d-flex justify-content-center justify-content-md-end gap-3 font-monospace"
+            style="font-size: 0.75rem; letter-spacing: 1px;">
+            <span title="Visa"><i class="fab fa-cc-visa fa-lg me-1"></i>VISA</span>
+            <span title="Mastercard"><i class="fab fa-cc-mastercard fa-lg me-1"></i>MASTERCARD</span>
+            <span title="UPI Transfer"><i class="fas fa-building-columns me-1"></i>UPI SECURE</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+
   <!-- ── FOOTER ───────────────────────────────────────────── -->
-  <footer>
+  <!-- <footer>
     <div class="footer-grid">
       <div>
         <div class="footer-brand">Maison <span>Élégante</span></div>
@@ -244,7 +350,7 @@
       <span>© 2025 Maison Élégante. All rights reserved.</span>
       <span>Privacy Policy · Terms · Cookies</span>
     </div>
-  </footer>
+  </footer> -->
 
   <div class="toast-container" id="toastWrap"></div>
 
@@ -276,11 +382,10 @@
     let selSizes = new Set();
     let selColors = new Set();
     let selStyles = new Set();
-    let maxPrice = 15000;
+    let maxPrice = 8000;
     let minRating = 0;
     let query = '';
     let sortMode = 'featured';
-    let cartCount = 0;
     let wishlist = new Set();
     let collapsed = false;
 
@@ -295,7 +400,8 @@
       Green: '#008000',
       Yellow: '#FFFF00',
       Orange: '#FFA500',
-      Purple: '#800080'
+      Purple: '#800080',
+      Pink: '#c32388'
     };
 
     /* ───────── FILTER ───────── */
@@ -337,6 +443,9 @@
 
     /* ───────── RENDER ───────── */
     function render() {
+
+      if (!DRESSES?.length) return;
+
       const data = sorted(filtered());
       const grid = document.getElementById('cardsGrid');
       document.getElementById('resultMeta').textContent = `Showing ${data.length} dress${data.length !== 1 ? 'es' : ''}`;
@@ -357,11 +466,11 @@
         <img src="/uploads/dresses/${d.img}" alt="${d.product_name}" loading="lazy"/>
         <div class="card-overlay">
           <div class="overlay-btns">
-            <button class="overlay-btn ghost" onclick="event.stopPropagation();toast('Quick view: ${d.product_name}','fa-eye')">
-              <i class="far fa-eye"></i> View
+            <button class="overlay-btn ghost" onclick="event.stopPropagation(); window.location.href='/dress-details/${d.id}'">
+                  <i class="far fa-eye"></i> View
             </button>
-            <button class="overlay-btn primary" onclick="event.stopPropagation();addCart(${d.id})">
-              <i class="fas fa-bag-shopping"></i> Add
+            <button class="overlay-btn primary" onclick="event.stopPropagation();shareOnWhatsapp(${d.id}, '${d.product_name}')">
+                <i class="fab fa-whatsapp"></i> Share
             </button>
           </div>
         </div>
@@ -404,7 +513,7 @@
     function renderChips() {
       const chips = [];
       if (category !== 'All') chips.push({ label: category, action: () => { category = 'All'; document.querySelectorAll('.side-nav-link').forEach(l => l.classList.remove('active')); document.querySelector('.side-nav-link').classList.add('active'); render(); } });
-      if (maxPrice < 15000) chips.push({ label: `≤ ₹${maxPrice.toLocaleString('en-IN')}`, action: () => { maxPrice = 15000; document.getElementById('priceSlider').value = 15000; document.getElementById('priceLabel').textContent = 'Up to ₹15,000'; render(); } });
+      if (maxPrice < 8000) chips.push({ label: `≤ ₹${maxPrice.toLocaleString('en-IN')}`, action: () => { maxPrice = 8000; document.getElementById('priceSlider').value = 8000; document.getElementById('priceLabel').textContent = 'Up to ₹8,000'; render(); } });
       if (query) chips.push({ label: `"${query}"`, action: () => { query = ''; document.getElementById('navSearchInput').value = ''; render(); } });
       selSizes.forEach(s => chips.push({ label: `Size: ${s}`, action: () => { selSizes.delete(s); document.querySelectorAll('.size-chip').forEach(b => { if (b.textContent === s) b.classList.remove('active'); }); render(); } }));
 
@@ -457,9 +566,9 @@
 
     function clearAll() {
       category = 'All'; selSizes.clear(); selColors.clear();
-      maxPrice = 15000; minRating = 0; query = '';
-      document.getElementById('priceSlider').value = 15000;
-      document.getElementById('priceLabel').textContent = 'Up to ₹15,000';
+      maxPrice = 8000; minRating = 0; query = '';
+      document.getElementById('priceSlider').value = 8000;
+      document.getElementById('priceLabel').textContent = 'Up to ₹8,000';
       document.getElementById('navSearchInput').value = '';
       document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
@@ -467,16 +576,6 @@
       document.querySelectorAll('.side-nav-link').forEach(l => l.classList.remove('active'));
       document.querySelector('.side-nav-link').classList.add('active');
       render();
-    }
-
-    /* ───────── CART / WISH ───────── */
-    function addCart(id) {
-      cartCount++;
-      const badge = document.getElementById('cartBadge');
-      badge.textContent = cartCount;
-      badge.style.display = 'flex';
-      const d = DRESSES.find(x => x.id === id);
-      toast(`${d.name} added to bag`, 'fa-bag-shopping');
     }
 
     function toggleWish(id) {
@@ -577,6 +676,18 @@
 
       // Rerender the grid with the applied filter modification
       render();
+    }
+
+    function shareOnWhatsapp(id, productName) {
+      const url = `${window.location.origin}/dress-details/${id}`;
+
+      const message =
+        `${productName}\n\nView Dress:\n${url}`;
+
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(message)}`,
+        '_blank'
+      );
     }
 
     /* ───────── INIT ───────── */

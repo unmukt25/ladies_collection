@@ -14,6 +14,8 @@ $routes->get('/dress/party', 'Home::index');
 $routes->get('/dress/office-wear', 'Home::index');
 $routes->get('/dress/sale', 'Home::index');
 
+$routes->get('/dress-details/(:num)', 'Home::dress_details/$1');
+
 
 $routes->get('/data/dress-category/all-dresses','DressesController::all_dresses');
 $routes->get('/data/dress-category/casual','DressesController::casual');

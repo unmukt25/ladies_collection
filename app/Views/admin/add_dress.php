@@ -194,6 +194,8 @@
 
                                 <span class="color-ball" data-color="#800080" style="background:#800080"></span>
 
+                                <span class="color-ball" data-color="#c32388" style="background:#c32388"></span>
+
                             </div>
 
                             <input type="text" id="colors" name="colors" class="form-control"

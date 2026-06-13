@@ -139,7 +139,7 @@ $selectedColors = json_decode($dress['colors'] ?? '[]', true);
                                 <?php
                                 $colorOptions = [
                                     "#000000","#FFFFFF","#FF0000","#0000FF",
-                                    "#008000","#FFFF00","#FFA500","#800080"
+                                    "#008000","#FFFF00","#FFA500","#800080","#c32388"
                                 ];
                                 ?>
 
