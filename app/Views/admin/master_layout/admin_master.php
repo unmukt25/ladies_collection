@@ -49,6 +49,10 @@
           <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
           <span class="nav-text">Profile</span>
         </a>
+        <a class="nav-link" href="<?=base_url("admin/subscription")?>">
+          <span class="nav-icon"><i class="bi bi-currency-rupee" aria-hidden="true"></i></span>
+          <span class="nav-text">Subscription</span>
+        </a>
       </nav>
 
       <div class="sidebar-user1">

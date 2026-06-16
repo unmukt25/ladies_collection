@@ -94,11 +94,19 @@ class Admin_Pages extends BaseController
 
     public function category()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
         return view("admin/category");
     }
 
     public function users()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
         $userModel = new UserModel();
 
         $user = $userModel->find(session()->get('admin_id'));
@@ -110,7 +118,21 @@ class Admin_Pages extends BaseController
 
     public function profile()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
         return view("admin/profile");
+    }
+
+    public function subscription()
+    {
+        if (!session()->get('logged_in')) {
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        
+        return view("admin/subscription");
     }
 
 

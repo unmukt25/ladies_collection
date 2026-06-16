@@ -34,6 +34,9 @@ $routes->get('/admin/category','Admin\Admin_Pages::category');
 $routes->get('/admin/users','Admin\Admin_Pages::users'); 
 $routes->get('/admin/profile','Admin\Admin_Pages::profile'); 
 
+//this will be the ui where user can see his payment history and make new payment log
+$routes->get('/admin/subscription','Admin\Admin_Pages::subscription'); 
+
 $routes->post('/admin/users/update-profile', 'Admin\Auth::updateProfile');
 $routes->post('/admin/users/change-password', 'Admin\Auth::changePassword');
 
