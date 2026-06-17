@@ -34,8 +34,12 @@ $routes->get('/admin/category','Admin\Admin_Pages::category');
 $routes->get('/admin/users','Admin\Admin_Pages::users'); 
 $routes->get('/admin/profile','Admin\Admin_Pages::profile'); 
 
-//this will be the ui where user can see his payment history and make new payment log
+//this will be the ui where user can see his payment history and make new payment
 $routes->get('/admin/subscription','Admin\Admin_Pages::subscription'); 
+$routes->post('/admin/subscription/submit','Admin\Subscription::submitUpiCode'); 
+
+//super admin page
+$routes->get('/admin/subscription/verify/(:num)','Admin\Admin_Pages::verify_by_superadmin/$1'); 
 
 $routes->post('/admin/users/update-profile', 'Admin\Auth::updateProfile');
 $routes->post('/admin/users/change-password', 'Admin\Auth::changePassword');

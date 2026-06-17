@@ -114,7 +114,8 @@ class Auth extends BaseController
         }
 
         $userModel->update($userId, [
-            'password' => password_hash($newPassword, PASSWORD_DEFAULT)
+            // 'password' => password_hash($newPassword, PASSWORD_DEFAULT)
+            'password' => $newPassword
         ]);
 
         return redirect()->back()->with(

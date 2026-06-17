@@ -25,6 +25,7 @@ class DashboardModel extends Model
                 ->countAllResults(),
 
             'total_visitors' => $db->table('visitor_logs')
+                ->where('visited_at >=', date('Y-m-d 00:00:00'))
                 ->countAllResults()
         ];
     }

@@ -5,8 +5,11 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Admin\DashboardModel;
+// use App\Models\Admin\SubscriptionModel;
+use App\Models\Admin\PaymentHistoryModel;
 use App\Models\DressModel;
 use App\Models\UserModel;
+
 
 class Admin_Pages extends BaseController
 {
@@ -110,7 +113,7 @@ class Admin_Pages extends BaseController
         $userModel = new UserModel();
 
         $user = $userModel->find(session()->get('admin_id'));
-        
+
         return view('admin/users', [
             'user' => $user
         ]);
@@ -131,10 +134,31 @@ class Admin_Pages extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
-        
-        return view("admin/subscription");
+        $userId = session()->get('admin_id');
+
+        // Instantiate models
+        $userModel = new UserModel();
+        $payModel = new PaymentHistoryModel();
+
+        // Pass parameters required by your view file variables
+        $data['subscription'] = $userModel->getSubscriptionByOwner($userId);
+        $data['payments'] = $payModel->getPaymentLogs($userId);
+
+        return view("admin/subscription", $data);
     }
 
+    public function verify_by_superadmin($id)
+    {
+        $userModel = new UserModel();
+        
+        $data['user'] = $userModel->find($id);
+
+        if (!$data['user']) {
+            return redirect()->to('admin/subscriptions')->with('error', 'User not found.');
+        }
+
+        return view('admin/verify_by_superadmin', $data);
+    }
 
 
 }

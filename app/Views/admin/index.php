@@ -53,7 +53,7 @@
       <div class="col-12 col-sm-6 col-xl-3">
         <article class="metric-card metric-danger">
           <div class="metric-top">
-            <span class="metric-label">Total Visitors</span>
+            <span class="metric-label">Total Page Accessed Today</span>
             <span class="metric-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
           </div>
           <div class="metric-value"><?= $stats['total_visitors'] ?></div>

@@ -32,23 +32,23 @@
     <div class="row g-3 mt-1">
       <div class="col-12 col-xl-5">
         
-        <article class="metric-card mb-3 <?= (!empty($subscription) && $subscription['status'] === 'active' && strtotime($subscription['ends_at']) > time()) ? 'metric-success' : 'metric-danger' ?>">
+        <article class="metric-card mb-3 <?= (!empty($subscription) && $subscription['subscription_status'] === 'active' && strtotime($subscription['subscription_ends_at']) > time()) ? 'metric-success' : 'metric-danger' ?>">
           <div class="metric-top">
             <span class="metric-label">Account Status</span>
             <span class="metric-icon">
-              <i class="bi <?= (!empty($subscription) && $subscription['status'] === 'active' && strtotime($subscription['ends_at']) > time()) ? 'bi-shield-check' : 'bi-shield-exclamation' ?>" aria-hidden="true"></i>
+              <i class="bi <?= (!empty($subscription) && $subscription['subscription_status'] === 'active' && strtotime($subscription['subscription_ends_at']) > time()) ? 'bi-shield-check' : 'bi-shield-exclamation' ?>" aria-hidden="true"></i>
             </span>
           </div>
           <div class="metric-value mt-2">
-            <?php if (!empty($subscription) && $subscription['status'] === 'active' && strtotime($subscription['ends_at']) > time()): ?>
+            <?php if (!empty($subscription) && $subscription['subscription_status'] === 'active' && strtotime($subscription['subscription_ends_at']) > time()): ?>
               Active Premium
             <?php else: ?>
               Expired / Inactive
             <?php endif; ?>
           </div>
           <div class="metric-meta">
-            <?php if (!empty($subscription) && $subscription['status'] === 'active' && strtotime($subscription['ends_at']) > time()): ?>
-              <span>Valid access until: <strong><?= date('d M Y', strtotime($subscription['ends_at'])) ?></strong></span>
+            <?php if (!empty($subscription) && $subscription['subscription_status'] === 'active' && strtotime($subscription['subscription_ends_at']) > time()): ?>
+              <span>Valid access until: <strong><?= date('d M Y', strtotime($subscription['subscription_ends_at'])) ?></strong></span>
             <?php else: ?>
               <span class="text-danger">Please submit a payment to restore listing capabilities.</span>
             <?php endif; ?>
