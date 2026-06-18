@@ -140,25 +140,53 @@ class Admin_Pages extends BaseController
         $userModel = new UserModel();
         $payModel = new PaymentHistoryModel();
 
-        // Pass parameters required by your view file variables
-        $data['subscription'] = $userModel->getSubscriptionByOwner($userId);
-        $data['payments'] = $payModel->getPaymentLogs($userId);
+        // 1. Get the core user profile details (id, user_name, email, subscription_status)
+        $user = $userModel->find($userId);
+
+        // 2. Fetch the latest active/successful transaction dates to get subscription timeline
+        $db = \Config\Database::connect();
+        $latestPaymentDates = $db->table('payment_history')
+            ->select('subscription_starts_at, subscription_ends_at')
+            ->where('shop_owner_id', $userId)
+            ->where('payment_status', 'success')
+            ->orderBy('id', 'DESC') // Get the most recent valid transaction
+            ->get()
+            ->getRowArray();
+
+        // 3. Merge them together so your view array keys don't break
+        $data['subscription'] = [
+            'id' => $user['id'] ?? '',
+            'user_name' => $user['user_name'] ?? '',
+            'email' => $user['email'] ?? '',
+            'subscription_status' => $user['subscription_status'] ?? 'pending',
+            'subscription_starts_at' => $latestPaymentDates['subscription_starts_at'] ?? null,
+            'subscription_ends_at' => $latestPaymentDates['subscription_ends_at'] ?? null,
+        ];
+
+        // 4. Pass down payment log details for history tables
+        $data['payments'] = $payModel->where('shop_owner_id', $userId)
+            ->orderBy('id', 'DESC')
+            ->findAll();
 
         return view("admin/subscription", $data);
     }
 
-    public function verify_by_superadmin($id)
+    public function verify_by_superadmin()
     {
-        $userModel = new UserModel();
-        
-        $data['user'] = $userModel->find($id);
+        $db = \config\Database::connect();
 
-        if (!$data['user']) {
-            return redirect()->to('admin/subscriptions')->with('error', 'User not found.');
-        }
+        // Query all pending payments joined with user profiles
+        $data['pending_payments'] = $db->table('payment_history')
+            ->select('payment_history.*, users.user_name, users.email, users.subscription_status')
+            ->join('users', 'users.id = payment_history.shop_owner_id')
+            ->where('payment_history.payment_status', 'pending')
+            ->orderBy('payment_history.payment_date', 'ASC') // Oldest requests first
+            ->get()
+            ->getResultArray();
 
         return view('admin/verify_by_superadmin', $data);
     }
+
 
 
 }

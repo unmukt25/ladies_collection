@@ -5,104 +5,96 @@
 <main class="dashboard-content">
     <div class="container-fluid px-3 px-lg-4 py-4">
         
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h1 class="h3 mb-0 text-gray-800">Verify UPI Payment</h1>
-                <p class="text-muted small mb-0">Review pending subscription activation request.</p>
-            </div>
-            <a href="<?= base_url('admin/subscriptions') ?>" class="btn btn-sm btn-secondary">
-                <i class="fas fa-arrow-left me-1"></i> Back to List
-            </a>
+        <div class="mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Pending UPI Payment Verification</h1>
+            <p class="text-muted small">Review and approve incoming registration platform payments manually.</p>
         </div>
 
-        <?php if (session()->getFlashdata('error')) : ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <?= session()->getFlashdata('error') ?>
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-1"></i> <?= session()->getFlashdata('success') ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
 
-        <div class="row">
-            <div class="col-xl-8 col-lg-7 mb-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-primary">Transaction Breakdown</h6>
-                        <span class="badge bg-<?= $user['subscription_status'] === 'pending' ? 'warning text-dark' : ($user['subscription_status'] === 'active' ? 'success' : 'danger') ?>">
-                            <?= strtoupper($user['subscription_status'] ?? 'UNKNOWN') ?>
-                        </span>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered align-middle">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="bg-light" style="width: 30%;">User Name</th>
-                                        <td><?= esc($user['user_name']) ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="bg-light">Email Address</th>
-                                        <td><?= esc($user['email']) ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="bg-light">Proposed Start Date</th>
-                                        <td><?= $user['subscription_starts_at'] ? date('M d, Y h:i A', strtotime($user['subscription_starts_at'])) : 'Immediate' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="bg-light">Proposed Expiry Date</th>
-                                        <td><?= $user['subscription_ends_at'] ? date('M d, Y h:i A', strtotime($user['subscription_ends_at'])) : 'N/A' ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="alert alert-info small mt-3 mb-0" role="alert">
-                            <i class="fas fa-info-circle me-1"></i> Please verify the transaction reference against your UPI business merchant account / bank statement before clicking <strong>Approve</strong>.
-                        </div>
-                    </div>
-                </div>
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-1"></i> <?= session()->getFlashdata('error') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+        <?php endif; ?>
 
-            <div class="col-xl-4 col-lg-5 mb-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-white py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Superadmin Actions</h6>
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <p class="text-muted small">Choose whether to approve this user's platform access based on manual transaction vetting.</p>
-                            <hr>
-                        </div>
-
-                        <form action="<?= base_url('admin/subscriptions/update-status/' . $user['id']) ?>" method="POST">
-                            <?= csrf_field() ?>
-                            
-                            <input type="hidden" name="status_action" id="status_action" value="">
-
-                            <div class="d-grid gap-2">
-                                <button type="submit" onclick="setAction('active')" class="btn btn-success btn-lg mb-2" <?= $user['subscription_status'] === 'active' ? 'disabled' : '' ?>>
-                                    <i class="fas fa-check-circle me-2"></i> Approve Payment
-                                </button>
-                                
-                                <button type="submit" onclick="setAction('expired')" class="btn btn-outline-danger" <?= $user['subscription_status'] === 'expired' ? 'disabled' : '' ?>>
-                                    <i class="fas fa-times-circle me-2"></i> Reject / Expire
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Awaiting Verification Queue (<?= count($pending_payments) ?> Requests)</h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0 text-nowrap">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="ps-4">ID</th>
+                                <th scope="col">User Detail</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Gateway Reference ID</th>
+                                <th scope="col">Payment Date</th>
+                                <th scope="col" class="pe-4 text-end">Verification Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($pending_payments)) : ?>
+                                <?php foreach ($pending_payments as $row) : ?>
+                                    <tr>
+                                        <td class="ps-4 fw-bold">#<?= esc($row['id']) ?></td>
+                                        <td>
+                                            <div class="fw-bold text-dark"><?= esc($row['user_name']) ?></div>
+                                            <div class="text-muted small"><?= esc($row['email']) ?></div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 fs-6">
+                                                <?= esc($row['currency']) ?> <?= number_format($row['amount'], 2) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <code class="text-dark fw-bold bg-light p-1 rounded"><?= esc($row['gateway_payment_id']) ?></code>
+                                        </td>
+                                        <td class="text-muted small">
+                                            <?= date('M d, Y', strtotime($row['payment_date'])) ?><br>
+                                            <?= date('h:i A', strtotime($row['payment_date'])) ?>
+                                        </td>
+                                        <td class="pe-4 text-end">
+                                            <form action="<?= base_url('admin/subscription/process-action/' . $row['id']) ?>" method="POST" class="d-inline-block">
+                                                <?= csrf_field() ?>
+                                                <input type="hidden" name="status_action" id="action_<?= $row['id'] ?>" value="">
+                                                
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <button type="submit" onclick="document.getElementById('action_<?= $row['id'] ?>').value='active';" class="btn btn-success" title="Approve Payment">
+                                                        <i class="fas fa-check me-1"></i> Approve
+                                                    </button>
+                                                    <button type="submit" onclick="document.getElementById('action_<?= $row['id'] ?>').value='failed';" class="btn btn-outline-danger" title="Reject Payment">
+                                                        <i class="fas fa-times me-1"></i> Reject
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="6" class="text-center py-5 text-muted">
+                                        <i class="fas fa-inbox fa-3x mb-3 text-gray-300"></i>
+                                        <p class="mb-0 fw-bold">Excellent! All caught up.</p>
+                                        <span class="small text-muted">There are no pending UPI transactions requiring manual review right now.</span>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
     </div>
 </main>
-
-<script>
-    /**
-     * Simple utility to assign the status value right before form submission
-     */
-    function setAction(status) {
-        document.getElementById('status_action').value = status;
-    }
-</script>
 
 <?= $this->endSection() ?>
