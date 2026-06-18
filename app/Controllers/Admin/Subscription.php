@@ -54,7 +54,7 @@ class Subscription extends BaseController
      */
     public function process_payment_action($paymentId)
     {
-        $db = \config\Database::connect();
+        $db = \Config\Database::connect();
 
         // Find target payment row
         $payment = $db->table('payment_history')->where('id', $paymentId)->get()->getRowArray();

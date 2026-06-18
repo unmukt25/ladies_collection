@@ -173,7 +173,7 @@ class Admin_Pages extends BaseController
 
     public function verify_by_superadmin()
     {
-        $db = \config\Database::connect();
+        $db = \Config\Database::connect();
 
         // Query all pending payments joined with user profiles
         $data['pending_payments'] = $db->table('payment_history')
